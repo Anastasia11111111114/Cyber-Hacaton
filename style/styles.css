@@ -23,17 +23,6 @@ html {
     /* Adjust this value based on the height of your nav bar */
 }
 
-@font-face {
-    font-family: "Steph";
-    src: url("fonts/steph-font.ttf");
-    font-weight: normal;
-}
-
-@font-face {
-    font-family: "Steph";
-    src: url("fonts/steph-font-bold.ttf");
-    font-weight: bold;
-}
 
 body {
     font-family: 'Steph', sans-serif;
@@ -122,7 +111,38 @@ section h2::after {
     transform: translateX(-50%);
     border-radius: 2px;
 }
+#goal-form {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    z-index: 1;
 
+}
+
+#goal-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#goal-form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #fff310;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+
+
+}
 /* About Section */
 #about-section {
     min-height: 100vh;
@@ -199,181 +219,6 @@ section h2::after {
     font-weight: 500;
 }
 
-/* Experience Section */
-#experience-section {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 2rem;
-}
-
-#experience-section h2 {
-    margin-bottom: 1rem;
-    font-size: 2.75rem;
-    font-weight: 700;
-}
-
-#experience-section .experience-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    max-width: 56.25rem;
-    width: 100%;
-}
-
-#experience-section .experience-box {
-    background-color: #fff310;;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    text-align: left;
-}
-
-#experience-section .experience-box h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-#experience-section .experience-box p {
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    font-weight: 300;
-}
-
-/* Projects Section */
-#projects-section {
-    width: 100%;
-    margin: auto;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 2rem;
-    z-index: 2;
-}
-
-#projects-section h2 {
-    margin-bottom: 1rem;
-    font-size: 2.75rem;
-    font-weight: 700;
-    z-index: 2;
-}
-
-#projects-section h3 {
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    font-weight: 500;
-    text-decoration: none;
-    z-index: 2;
-}
-
-.project-subsection {
-    width: 100%;
-    margin-bottom: 4rem;
-    /* Add space between subsections */
-    z-index: 2;
-}
-
-.projects-scroll-container {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1rem;
-    width: 100%;
-    max-width: 1600px;
-    overflow-x: auto;
-    /* Allow horizontal scrolling if needed */
-    margin: 0 auto;
-}
-
-.project-box {
-    flex: 0 0 16rem;
-    /* Fixed width for the boxes */
-    text-align: center;
-    border: 1px solid #d7dbd8;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Smooth transition for scaling */
-}
-
-.project-box:hover {
-    transform: scale(0.95);
-    /* Grow the box slightly on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.project-box img {
-    width: 100%;
-    height: 12rem;
-    object-fit: cover;
-    border-radius: 0.25rem;
-    margin-bottom: 0.75rem;
-}
-
-.project-box h4 {
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.project-box h5 {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.project-box p {
-    font-size: 1rem;
-    font-weight: 300;
-    color: #000000;
-}
-
-/* Skills Section */
-#skills-section {
-    min-height: 30vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 2rem;
-    /* Add gap between elements */
-}
-
-#skills-section h2 {
-    margin-bottom: 1rem;
-    font-size: 2.75rem;
-    font-weight: 700;
-}
-
-#skills-section .skills-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    /* Add gap between icons */
-}
-
-#skills-section i {
-    font-size: 3rem;
-    color: #f5e904;;
-    transition: transform 0.3s ease, color 0.3s ease;
-    margin: 1rem 0;
-    /* Add margin to ensure proper spacing */
-}
-
-#skills-section i:hover {
-    transform: scale(1.2);
-    color: #fff310;;
-    ;
-}
-
 /* Leave a Message Section */
 #leave-message-section {
     min-height: 50vh;
@@ -407,27 +252,6 @@ footer {
     font-size: 0.875rem;
 }
 
-/* Cards Swiper */
-.swiper {
-    width: 100%;
-    overflow-x: scroll !important;
-}
-
-.swiper-slide {
-    width: 272px !important;
-    height: 375.75px;
-}
-
-.swiper-slide>a {
-    display: block;
-    transform: scale(0.9);
-    width: 272px;
-    height: 375.75px;
-}
-
-p{
-    z-index: 2;
-}
 
 /* Media Queries for Responsiveness */
 @media (min-width: 1690px) {
@@ -453,7 +277,7 @@ p{
 
     #projects-section .project-box {
         flex: 0 0 14rem;
-        /* Adjust width for smaller screens */
+
     }
 
     #skills-section i {
@@ -516,31 +340,19 @@ p{
         height: 12rem;
     }
 
-    #projects-section .project-box {
-        flex: 0 0 14rem;
-    }
-
-    #skills-section i {
-        font-size: 1.5rem;
-    }
-
-    #skills-section .skills-container {
-        gap: 1rem;
-    }
-
     section {
         padding: 6rem 1rem;
-        /* Adjust padding for smaller screens */
+
     }
 
     #projects-section {
         padding: 6rem 1rem;
-        /* Adjust padding for smaller screens */
+
     }
 
     #leave-message-section {
         padding: 3rem 1rem;
-        /* Adjust padding for smaller screens */
+
     }
 }
 
@@ -550,7 +362,7 @@ p{
     font-size: 25px;
     font-style: bold;
     color: rgb(0, 0, 0);
-    background-color: #f5e904;
+    background-color: #fff42b;
     cursor: pointer;
     width: 20vw;
     flex: 1 1 30%
@@ -562,7 +374,7 @@ p{
     font-size: 25px;
     font-style: bold;
     color: rgb(0, 0, 0);
-    background-color: #f5e904;
+    background-color: #fff42b;
     cursor: pointer;
     width: 20vw;
     flex: 1 1 30%
@@ -575,7 +387,7 @@ p{
     font-size: 14px;
     font-style: bold;
     color: rgb(0, 0, 0);
-    background-color: #f5e904;
+    background-color: #fff42b;
     cursor: pointer;
     width: 30vw;
     flex: 1 1 30%
@@ -611,3 +423,146 @@ p{
     z-index: 0;
     opacity: 0.8;
   }
+
+.week-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 110vw;
+}
+
+.week-container {
+    width: 65%; /* Increased width */
+    height: 100%; /* Increased height */
+    background-color: #fff765;
+    border: 2px solid #fff42b;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px; /* Increased padding */
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold;
+    color: #222222;
+    text-align: center;
+    position: relative;
+}
+
+.day-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 12px; /* Adjusted height for the top bar */
+    background-color: #fff42b;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.day-card:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.day-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.day-card li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.day-card label {
+    flex: 1;
+    text-align: left;
+    font-size: 16px;
+}
+
+.day-card input[type="checkbox"] {
+    margin-left: 10px;
+    transform: scale(1.2); /* Makes the checkbox slightly larger */
+}
+
+
+.schedule {
+    list-style: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', system-ui;
+}
+.time-block {
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+.time-block:hover {
+    transform: translateY(-2px);
+}
+
+
+.time-block h3 {
+    color: #2c3e50;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #4a90e2;
+    font-size: 1.4rem;
+}
+
+.time-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.time-block li {
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.2s ease;
+}
+
+.time-block li:hover {
+    background: #f1f3f5;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #4a90e2;
+    cursor: pointer;
+}
+
+label {
+    color: #495057;
+    font-size: 1rem;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+label:hover {
+    color: #212529;
+}
+
+/* Для анимации чекбокса */
+input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
