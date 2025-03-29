@@ -1,47 +1,106 @@
-const apiKey = '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';
-
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('goal-form').addEventListener('submit', async function(event) {
-      event.preventDefault();
+    
+    const slider = document.getElementById('slider');
+    const sliderValue = document.getElementById('sliderValue');
+    const goalForm = document.getElementById('goal-form');
+    const toggleFormButton = document.getElementById('toggle-form-button');
+    const voiceButton = document.getElementById('voice-button');
+    const voiceOutput = document.getElementById('voice-output');
+    const userInput = document.getElementById('user-input');
+    const outputElement = document.getElementById('output'); // Добавляем получение элемента output
 
-      const userInput = document.getElementById('user-input').value;
-      const responseDiv = document.getElementById('output');
-
-      if (!userInput.trim()) {
-        responseDiv.textContent = "Пожалуйста, введите текст.";
+   
+    if (!outputElement) {
+        console.error('Элемент с id="output" не найден!');
         return;
-      }
+    }
 
-      responseDiv.textContent = "🔄 Анализируем...";
-
-      try {
-        console.log(data);
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            model: 'gpt-4', // или 'gpt-4' — если у тебя есть доступ
-            messages: [
-              { role: 'system', content: 'Ты помогаешь людям анализировать и структурировать их цели.' },
-              { role: 'user', content: userInput }
-            ],
-            temperature: 0.7
-          })
-        });
-
-        const data = await response.json();
-
-        const reply = data.choices?.[0]?.message?.content || "Ошибка получения ответа.";
-        responseDiv.textContent = reply;
-      } catch (error) {
-        responseDiv.textContent = "Произошла ошибка при подключении к AI.";
-        console.error(error);
-      }
+    
+    slider.addEventListener('input', function () {
+        sliderValue.textContent = this.value;
     });
-  });
 
+    
+    toggleFormButton.addEventListener('click', function() {
+        goalForm.style.display = goalForm.style.display === 'block' ? 'none' : 'block   ';
+    });
+    
+   
+    voiceButton.addEventListener('click', function () {
+        if (!('webkitSpeechRecognition' in window)) {
+            alert('Ваш браузер не поддерживает голосовой ввод.');
+            return;
+        }
 
-  
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = 'ru-RU';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        recognition.start();
+
+        recognition.onresult = function (event) {
+            const transcript = event.results[0][0].transcript;
+            userInput.value = transcript;
+            voiceOutput.textContent = `Распознанный текст: ${transcript}`;
+        };
+
+        recognition.onerror = function (event) {
+            voiceOutput.textContent = `Ошибка распознавания: ${event.error}`;
+            voiceOutput.style.color = 'red';
+        };
+
+        recognition.onend = function () {
+            voiceOutput.textContent += ' (распознавание завершено)';
+        };
+    });
+
+    
+    goalForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const userInputValue = userInput.value;
+        
+        outputElement.innerHTML = '';
+        outputElement.style.color = '';
+
+        if (!userInputValue.trim()) {
+            outputElement.textContent = '❌ Введите описание целей!';
+            outputElement.style.color = 'red';
+            return;
+        }
+
+        outputElement.textContent = '⏳ Генерирую задачи...';
+
+        try {
+            const response = await fetch('http://localhost:8000/generate', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify({ 
+                    prompt: userInputValue  
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Ошибка сервера: ${response.status}`);
+            }
+
+            const data = await response.json();
+            
+            if (data.tasks) {
+                outputElement.innerHTML = data.tasks;
+                // Если нужно подсветить HTML:
+                if (typeof Prism !== 'undefined') {
+                    Prism.highlightAllUnder(outputElement);
+                }
+            } else {
+                throw new Error(data.error || 'Неизвестная ошибка');
+            }
+        } catch (error) {
+            outputElement.innerHTML = `<div class="error">❌ ${error.message}</div>`;
+            outputElement.style.color = 'red';
+            console.error('Ошибка:', error);
+        }
+    });
+});
